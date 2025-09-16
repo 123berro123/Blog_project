@@ -8,6 +8,18 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+    public function frontend_index()
+{
+    $posts = \App\Models\Post::with('category_post')->latest()->paginate(6);
+    return view('frontend.index', compact('posts'));
+}
+public function frontend_show($id)
+{
+    $post = \App\Models\Post::with('category_post')->findOrFail($id);
+    return view('frontend.blog_details', compact('post'));
+}
+
+
     public function read_post()
     {
         $posts = Post::with('category_post')->latest()->get();

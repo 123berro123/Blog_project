@@ -18,6 +18,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    
+    
     Route::get('/read_category',[CategoryController::class,'read_category'])->name('read_category');
     Route::get('/add_category',[CategoryController::class,'add_category'])->name('add_category');
     Route::post('/create_category',[CategoryController::class,'create_category'])->name('create_category');
@@ -25,6 +27,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/edit_category/{id}',[CategoryController::class,'edit_category'])->name('edit_category');
     Route::post('/update_category/{id}',[CategoryController::class,'update_category'])->name('update_category');
 
+    
     Route::get('/read_post',[PostController::class,'read_post'])->name('read_post');
     Route::get('/add_post',[PostController::class,'add_post'])->name('add_post');
     Route::post('/create_post',[PostController::class,'create_post'])->name('create_post');
@@ -32,5 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/edit_post/{id}',[PostController::class,'edit_post'])->name('edit_post');
     Route::post('/update_post/{id}',[PostController::class,'update_post'])->name('update_post');
 });
+Route::get('/', [PostController::class, 'frontend_index'])->name('home');          // already added earlier
+Route::get('/blog/{id}', [PostController::class, 'frontend_show'])->name('blog.show');
 
 require __DIR__.'/auth.php';
